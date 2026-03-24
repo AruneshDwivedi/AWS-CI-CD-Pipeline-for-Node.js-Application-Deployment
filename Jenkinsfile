@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/AruneshDwivedi/AWS-CI-CD-Pipeline-for-Node.js-Application-Deployment.git'
+            }
+        }
+
+        stage('Deploy with Ansible') {
+            steps {
+                sh '''
+                cd /home/ubuntu/ansible
+                ansible-playbook -i inventory.ini deploy.yml
+                '''
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh '''
+                sleep 5
+                curl -f http://3.110.27.162:3000
+                '''
+            }
+        }
+    }
+}
