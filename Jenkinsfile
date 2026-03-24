@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/AruneshDwivedi/AWS-CI-CD-Pipeline-for-Node.js-Application-Deployment.git'
-            }
-        }
-
         stage('Deploy with Ansible') {
             steps {
                 sh '''
