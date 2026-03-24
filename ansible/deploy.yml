@@ -33,6 +33,7 @@
 
     - name: Stop existing app (if running)
       shell: "pkill -f 'node app.js' || true"
+      ignore_errors: yes
 
     - name: Start Node.js app
       shell: "nohup npm start > app.log 2>&1 &"
