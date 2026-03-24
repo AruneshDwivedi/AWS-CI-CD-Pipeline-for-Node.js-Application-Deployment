@@ -14,7 +14,12 @@
           - nodejs
           - npm
         state: present
-
+    - name: Backup existing app (if exists)
+      shell: |
+        if [ -d /home/ubuntu/app ]; then
+          rm -rf /home/ubuntu/app_backup
+          cp -r /home/ubuntu/app /home/ubuntu/app_backup
+        fi
     - name: Remove old app directory (if exists)
       file:
         path: /home/ubuntu/app
