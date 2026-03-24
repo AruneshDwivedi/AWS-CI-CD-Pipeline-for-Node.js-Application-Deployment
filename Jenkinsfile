@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh '''
                 sleep 5
-                curl -f http://3.110.27.162:3000
+                curl -f  --max-time 5 http://3.110.27.162:3000
                 '''
             }
         }
