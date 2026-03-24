@@ -6,7 +6,7 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 sh '''
-                cd /home/ubuntu/ansible
+                cd ${WORKSPACE}/ansible
                 ansible-playbook -i inventory.ini deploy.yml
                 '''
             }
