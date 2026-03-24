@@ -7,6 +7,7 @@ pipeline {
             steps {
                 sh '''
                 cd ${WORKSPACE}/ansible
+                export ANSIBLE_HOST_KEY_CHECKING=False  
                 ansible-playbook -i inventory.ini deploy.yml
                 '''
             }
