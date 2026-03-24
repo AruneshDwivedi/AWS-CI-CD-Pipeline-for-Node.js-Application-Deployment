@@ -1,0 +1,19 @@
+- name: Rollback Node.js App
+  hosts: app
+  become: yes
+
+  tasks:
+
+    - name: Stop current app
+      shell: "pkill -f 'node app.js'"
+      ignore_errors: yes
+
+    - name: Restore backup
+      shell: |
+        rm -rf /home/ubuntu/app
+        mv /home/ubuntu/app_backup /home/ubuntu/app
+
+    - name: Restart app
+      shell: "nohup npm start > app.log 2>&1 &"
+      args:
+        chdir: /home/ubuntu/app/app
