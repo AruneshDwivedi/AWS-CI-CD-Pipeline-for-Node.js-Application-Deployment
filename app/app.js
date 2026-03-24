@@ -1,3 +1,4 @@
+throw new Error("Intentional failure for rollback test");
 const http = require("http");
 
 const server = http.createServer((req, res) => {
